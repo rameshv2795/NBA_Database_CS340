@@ -50,13 +50,13 @@ nav{
 <div class="container">
 
 <header>
-   <h1>NBA Teams</h1>
+   <h1>NBA Players</h1>
 </header>
   
 	<nav>
 	  <ul >
 		<li><a href="../home.html">Home</a></li>
-		<li><a href="player.php">Players</a></li>
+		<li><a href="team.php">Teams</a></li>
 		<li><a href="stat.php">Player Statistics</a></li>
 		<li><a href="#">Games</a></li>
 		<li><a href="#">Schedule</a></li>
@@ -66,7 +66,7 @@ nav{
 
 
 <article>
-  <h1>NBA Teams</h1>
+  <h1>NBA Players</h1>
   <p>team</p>
   <p>Page</p>
 </article>
