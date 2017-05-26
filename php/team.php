@@ -66,9 +66,44 @@ nav{
 
 
 <article>
-  <h1>NBA Teams</h1>
-  <p>team</p>
-  <p>Page</p>
+
+<?php
+// Including the wrapper file in the page
+	$hostdb = "classmysql:3306";  // MySQl host
+	$userdb = "cs340_rameshv";  // MySQL username
+	$passdb = "6238";  // MySQL password
+	$namedb = "cs340_rameshv";  // MySQL database name
+
+	// Establish a connection to the database
+	$dbhandle = new mysqli($hostdb, $userdb, $passdb, $namedb);
+
+	/*Render an error message, to avoid abrupt failure, if the database connection parameters are incorrect */
+	if ($dbhandle->connect_error) {
+	  exit("There was an error with your connection: ".$dbhandle->connect_error);
+	}	
+	  $strQuery = "SELECT * FROM team ORDER BY TeamName";
+	  /*Prepare Statement for security*/
+	  $result = $dbhandle -> prepare($strQuery);
+	  $result -> execute();
+	  $result = $result -> get_result();
+	  echo "<br><br><br>";
+		echo "<table>";
+		echo "<tr>";
+			echo "<th>" . "Team Name" ."</th>";
+		echo "</tr>";		
+		
+		while($entry = $result -> fetch_assoc()){
+		
+			echo "<tr>";
+					echo "<td>" . $entry["TeamName"] . "</td>";		
+			echo "</tr>";
+		}
+		echo "</table>";
+	  
+
+?>
+
+
 </article>
 
 
