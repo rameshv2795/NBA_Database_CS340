@@ -50,7 +50,7 @@ nav{
 <div class="container">
 
 <header>
-   <h1>Login/Sign-Up</h1>
+   <h1>Favourites and Information</h1>
 </header>
   
 	<nav>
@@ -60,20 +60,37 @@ nav{
 		<li><a href="stat.php">Player Statistics</a></li>
 		<li><a href="#">Games</a></li>
 		<li><a href="#">Schedule</a></li>
-		<li><a href="#">Teams</a></li>	
+		<li><a href="#">Teams</a></li>
+		<li><a href="#">Logout</a></li>		
 	  </ul>
 	</nav>
 
 
 <article>
 	<form id="signup_form" method="post" >
-	
-		Username: <input type="text" name="user" required>*required<br>
-		Password: <input type="text" name="pass" required> *required<br>
-
+	<select id="nbaplayerid" name="nbaplayerid">
+	<?php echo add_players();?>
+	</select>
 	<br><br>
-	<input type="submit" name="account_submit" value="Create Account">
+	<input type="submit" name="player_submit" value="Add Favorite Player">
 	</form>
+	<br><br><br><br>
+	<form id="signup_form" method="post" >
+	<select id="nbateamid" name="nbateamid">
+	<?php echo add_teams();?>
+	</select>
+	<br><br>
+	<input type="submit" name="team_submit" value="Add Favorite Team">
+	</form>
+	<br><br><br><br>
+	<form id="aboutme_form" method="post" >
+	<textarea rows="5" cols="60">
+	
+	</textarea>
+	<br><br>
+	<input type="submit" name="about_submit" value="Add About">
+	</form>	
+	
 	<?php
 	// Including the wrapper file in the page
 	$hostdb = "classmysql:3306";  // MySQl host
