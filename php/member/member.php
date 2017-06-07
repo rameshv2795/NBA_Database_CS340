@@ -1,4 +1,4 @@
-	<?php session_start();
+	<?php
 	// Including the wrapper file in the page
 	$hostdb = "classmysql:3306";  // MySQl host
 	$userdb = "cs340_rameshv";  // MySQL username
@@ -12,13 +12,6 @@
 	if ($dbhandle->connect_error) {
 	  exit("There was an error with your connection: ".$dbhandle->connect_error);
 	}
-	
-	if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == true){
-		echo '<script language="javascript">';
-		echo 'alert("LOGGED IN")';
-		echo '</script>';
-	}
-	
 	if(isset($_POST['account_submit']))
 	{
 
@@ -35,7 +28,9 @@
 	  $result -> execute();
 	  $result = $result -> get_result();
 	}
-
+	if(isset($_SESSION["username"])){
+		echo $_SESSION["username"];
+	}
 	 ?>
 
 	<?php

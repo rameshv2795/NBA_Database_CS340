@@ -77,6 +77,7 @@ nav{
 	</form>
 	
 	<?php
+	session_start();
 	// Including the wrapper file in the page
 	$hostdb = "classmysql:3306";  // MySQl host
 	$userdb = "cs340_rameshv";  // MySQL username

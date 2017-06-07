@@ -91,6 +91,10 @@ nav{
 	if ($dbhandle->connect_error) {
 	  exit("There was an error with your connection: ".$dbhandle->connect_error);
 	}
+	if(isset($_GET["username"])){
+    $_SESSION["username"] = $_GET['username'];
+	echo $_SESSION["username"];
+}
 	if(isset($_POST['formSubmit']))
 	{
 		
