@@ -90,8 +90,8 @@ nav{
 	if ($dbhandle->connect_error) {
 	  exit("There was an error with your connection: ".$dbhandle->connect_error);
 	}
-	if(isset($_POST['search_submit']))
-	{
+	if(isset($_POST['search_submit'])){ //Searched
+	
 
 	  $strQuery = "SELECT * FROM player  
 		WHERE FirstName LIKE CONCAT ('%',?,'%') OR LastName LIKE CONCAT ('%',?,'%') 
@@ -103,7 +103,23 @@ nav{
 	  $result -> execute();
 	  $result = $result -> get_result();
 	}
-	else{
+	
+	else if(isset($_GET["data_team"])){ //redirected from team.php
+		
+	  $t = 	$_GET["data_team"];
+	  //echo $t;
+	  $strQuery = "SELECT * FROM player p  
+		WHERE p.team IN (SELECT TeamName FROM team WHERE ? = tid )";
+	  /*Prepare Statement for security*/
+	  $result = $dbhandle -> prepare($strQuery);
+	  /*Bind search to two parameters for first and last name*/
+	  $result -> bind_param("s",$t);
+	  $result -> execute();
+	  $result = $result -> get_result();		
+	
+	}
+	
+	else{ //default view
 	
 		$strQuery = "SELECT * FROM player";
 		$result = $dbhandle -> query($strQuery);
@@ -124,8 +140,8 @@ nav{
 		
 			echo "<tr>";
 				
-					echo "<td>" . $entry["LastName"] . "</td>";
-					echo "<td>" . $entry["FirstName"] . "</td>";
+					echo "<td> <a href=stat.php?data=".$entry["playerid"].">" . $entry["LastName"] . "</a></td>";
+					echo "<td> <a href=stat.php?data=".$entry["playerid"].">" . $entry["FirstName"] . "</a></td>";
 					echo "<td>" . $entry["Position"] . "</td>";
 					echo "<td>" . $entry["Height"] . "</td>";
 					echo "<td>" . $entry["Weight"] . "</td>";

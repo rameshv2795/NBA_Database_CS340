@@ -95,7 +95,7 @@ nav{
 		while($entry = $result -> fetch_assoc()){
 		
 			echo "<tr>";
-					echo "<td>" . $entry["TeamName"] . "</td>";		
+					echo "<td><a href=player.php?data_team=".$entry["tid"].">" . $entry["TeamName"] . "</td>";		
 			echo "</tr>";
 		}
 		echo "</table>";

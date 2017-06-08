@@ -132,6 +132,44 @@ nav{
 		}
 		echo "</table>";
 	  }
+	  if(isset($_GET["data"])){ /*If linked clicked from player page*/
+    
+	  $p = $_GET["data"];
+	  $strQuery = "SELECT * FROM statistics s 
+		INNER JOIN player p ON s.nba_player = p.playerid
+		WHERE s.nba_player = ? ORDER BY s.year";
+	  /*Prepare Statement for security*/
+	  $result = $dbhandle -> prepare($strQuery);
+	  $result -> bind_param("s",$p);
+	  $result -> execute();
+	  $result = $result -> get_result();
+	  echo "<br><br><br>";
+		echo "<table>";
+		echo "<tr>";
+			echo "<th>" . "PPG" ."</th>";
+			echo "<th>" . "APG" ."</th>";
+			echo "<th>" . "BPG" ."</th>";
+			echo "<th>" . "FG%" ."</th>";
+			echo "<th>" . "GP" ."</th>";
+			echo "<th>" . "Year" ."</th>";
+		echo "</tr>";		
+		
+		while($entry = $result -> fetch_assoc()){
+		
+			echo "<tr>";
+				
+					echo "<td>" . $entry["PPG"] . "</td>";
+					echo "<td>" . $entry["APG"] . "</td>";
+					echo "<td>" . $entry["BPG"] . "</td>";
+					echo "<td>" . $entry["FG%"] . "</td>";
+					echo "<td>" . $entry["GP"] . "</td>";
+					echo "<td>" . $entry["year"] . "</td>";
+			
+			echo "</tr>";
+		}
+		echo "</table>";
+
+	  }
 	 ?>
 
 </article>
