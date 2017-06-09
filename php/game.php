@@ -68,7 +68,7 @@ nav{
 	<a href="player.php" class="btn btn-info" id="btn1" role="button">Players</a></p>
 
 </div>
-
+<center>
 <article>
 
 <?php
@@ -91,15 +91,25 @@ nav{
 	  $result -> execute();
 	  $result = $result -> get_result();
 	  echo "<br><br><br>";
-		echo "<table>";
+		echo "<table cellspacing='100'>";
 		echo "<tr>";
 			echo "<th>" . "Game" ."</th>";
+			echo "<th>" . "Team 1" ."</th>";
+			echo "<th>" . "Team 2" ."</th>";
+			echo "<th>" . "Team 1 Score" ."</th>";
+			echo "<th>" . "Team 2 Score" ."</th>";
+			echo "<th>" . "Date" ."</th>";
 		echo "</tr>";		
 		
 		while($entry = $result -> fetch_assoc()){
 		
 			echo "<tr>";
-					echo "<td>" . $entry["GameID"] . "</td>";		
+					echo "<td>" . $entry["GameID"] . "</td>";
+					echo "<td>" . $entry["Team1Name"] . "</td>";
+					echo "<td>" . $entry["Team2Name"] . "</td>";
+					echo "<td>" . $entry["Score1"] . "</td>";
+					echo "<td>" . $entry["Score2"] . "</td>";
+					echo "<td>" . $entry["GameDate"] . "</td>";
 			echo "</tr>";
 		}
 		echo "</table>";
@@ -109,7 +119,7 @@ nav{
 
 
 </article>
-
+</center>
 
 
 </body>
