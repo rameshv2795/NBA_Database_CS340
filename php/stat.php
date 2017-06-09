@@ -23,6 +23,13 @@ ul {
     padding: 0;
 }
 
+#btn1{
+	background-color: red;
+	border-style: solid;
+	border-color: blue;
+	margin:0 auto;
+}
+
 li {
 	display: inline;
 }
@@ -43,21 +50,19 @@ nav{
 </head>
 <body>
 
-<div class="container">
-
+<div class="jumbotron">
 <header>
-   <h1>NBA Player Statistics</h1>
+   <h1>Player Stats</h1>
 </header>
-  
-	<nav>
-	  <ul >
-		<li><a href="../home.html">Home</a></li>
-		<li><a href="team.php">Teams</a></li>
-		<li><a href="player.php">Players</a></li>
-		<li><a href="game.php">Games</a></li>
-		<li><a href="fan.php">Login/Sign-Up</a></li>	
-	  </ul>
-	</nav>
+	<p></p>
+	<p></p>
+	<p class="text-center">
+	<a href="team.php" class="btn btn-info" id="btn1" role="button">Teams</a>
+	<a href="fan.php" class="btn btn-info" id="btn1" role="button">Login/Sign-Up</a>
+	<a href="game.php" class="btn btn-info" id="btn1" role="button">Games</a>
+	<a href="player.php" class="btn btn-info" id="btn1" role="button">Players</a></p>
+
+</div>
 
 
 <article>
@@ -174,7 +179,6 @@ nav{
 
 </article>
 
-</div>
 </body>
 </html>
 

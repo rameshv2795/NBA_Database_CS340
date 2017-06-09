@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
 div.container {
     width: 100%;
@@ -15,6 +16,13 @@ header, footer {
     background-color: blue;
     clear: left;
     text-align: center;
+}
+
+#btn1{
+	background-color: red;
+	border-style: solid;
+	border-color: blue;
+	margin:0 auto;
 }
 
 ul {
@@ -47,23 +55,19 @@ nav{
 </head>
 <body>
 
-<div class="container">
-
+<div class="jumbotron">
 <header>
-   <h1>NBA Games</h1>
+   <h1>Finals Games</h1>
 </header>
-  
-	<nav>
-	  <ul >
-		<li><a href="../home.html">Home</a></li>
-		<li><a href="player.php">Players</a></li>
-		<li><a href="stat.php">Player Statistics</a></li>
-		<li><a href="team.php">Teams</a></li>
-		<li><a href="#">Schedule</a></li>
-		<li><a href="#">Login/Sign-Up</a></li>	
-	  </ul>
-	</nav>
+	<p></p>
+	<p></p>
+	<p class="text-center">
+	<a href="team.php" class="btn btn-info" id="btn1" role="button">Teams</a>
+	<a href="stat.php" class="btn btn-info"  id="btn1" role="button">Player Statistics</a>
+	<a href="fan.php" class="btn btn-info" id="btn1" role="button">Login/Sign-Up</a>
+	<a href="player.php" class="btn btn-info" id="btn1" role="button">Players</a></p>
 
+</div>
 
 <article>
 
@@ -107,8 +111,6 @@ nav{
 </article>
 
 
-
-</div>
 
 </body>
 </html>
