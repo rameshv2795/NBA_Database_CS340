@@ -67,11 +67,10 @@ nav{
 	<p></p>
 	<p></p>
 	<p class="text-center">
-	<a href="php/team.php" class="btn btn-info" id="btn1" role="button">Teams</a>
-	<a href="php/stat.php" class="btn btn-info"  id="btn1" role="button">Player Statistics</a>
+	<a href="team.php" class="btn btn-info" id="btn1" role="button">Teams</a>
+	<a href="stat.php" class="btn btn-info"  id="btn1" role="button">Player Statistics</a>
 	<a href="#" class="btn btn-info"  id="btn1" role="button">Games</a>
-	<a href="#" class="btn btn-info" id="btn1" role="button">Schedule</a>
-	<a href="php/fan.php" class="btn btn-info" id="btn1" role="button">Login/Sign-Up</a></p>
+	<a href="fan.php" class="btn btn-info" id="btn1" role="button">Login/Sign-Up</a></p>
 
 </div>
 <div>
