@@ -19,6 +19,13 @@ header, footer {
     text-align: center;
 }
 
+#btn1{
+	background-color: red;
+	border-style: solid;
+	border-color: blue;
+	margin:0 auto;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -64,11 +71,11 @@ nav{
 
 </div>
 <div>
-<center><article style="background-color:red">
+<center><article>
 
 	<form id="search_player_form" method="post" >
 	
-	<img src="images/lebron-james.jpg" style="float:left;height:800px;width:300px">
+	<img src="images/lebron-james.jpg" style="float:left;height:800px;width:400px;margin-top:100px">
 	
 	Search Player Name: <input type="text" name="pname" id="pname"><br>
 
@@ -153,7 +160,6 @@ nav{
 
 
 	 ?>
-	 <img src="images/lebron-james.jpg" style="float:right;height:800px;width:300px">
 </article>
 </center>
 
