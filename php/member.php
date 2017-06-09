@@ -20,6 +20,7 @@
 		echo 'alert("LOGGED IN")';
 		echo '</script>';
 		$username = $_SESSION["username"];
+		 echo $username;
 
 		if(isset($_POST['player_submit'])){
 		
