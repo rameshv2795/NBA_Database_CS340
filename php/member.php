@@ -21,16 +21,18 @@
 		echo '</script>';
 		$username = $_SESSION["username"];
 		 echo $username;
-
+		
 		if(isset($_POST['player_submit'])){
 		
 		  $strQuery = "UPDATE fan SET FavoritePlayer = ? WHERE 
-					   Username ='".$username."'"; 
-					   
+					   Username = 'kon'"; 
+		echo '<script language="javascript">';
+		echo 'alert("DROPDOWN")';
+		echo '</script>';
 		  /*Prepare Statement for security*/
 		  $result = $dbhandle -> prepare($strQuery);
-		  $pid = $_POST["nbaplayerid"];
-		  echo $pid;
+		  $pid = $_POST["pla"];
+		  echo $_POST["pla"];
 		  /*Bind parameter*/
 		  $result -> bind_param("s",$pid);
 		  $result -> execute();
@@ -183,7 +185,7 @@ nav{
 
 <article>
 	<form id="signup_form" method="post" >
-	<select id="nbaplayerid" name="nbaplayerid">
+	<select id="pla" name="pla">
 	<?php echo add_players();?>
 	</select>
 	<br><br>
