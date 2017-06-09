@@ -1,4 +1,6 @@
 	<?php session_start();
+	//echo session_id();
+	//print $_COOKIE['PHPSESSID'];
 	// Including the wrapper file in the page
 	$hostdb = "classmysql:3306";  // MySQl host
 	$userdb = "cs340_rameshv";  // MySQL username
@@ -13,23 +15,43 @@
 	  exit("There was an error with your connection: ".$dbhandle->connect_error);
 	}
 	
-	if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == true){
+	if(isset($_SESSION["logged_in"])){
 		echo '<script language="javascript">';
 		echo 'alert("LOGGED IN")';
 		echo '</script>';
+		$username = $_SESSION["username"];
+		 echo $username;
+
+		if(isset($_POST['player_submit'])){
+		
+		  $strQuery = "UPDATE fan SET FavoritePlayer = ? WHERE 
+					   Username ='".$username."'"; 
+					   
+		  /*Prepare Statement for security*/
+		  $result = $dbhandle -> prepare($strQuery);
+		  $pid = $_POST["nbaplayerid"];
+		  echo $pid;
+		  /*Bind parameter*/
+		  $result -> bind_param("s",$pid);
+		  $result -> execute();
+	      $result = $result -> get_result();			
+		  
+		  
+
+		
+		}
+										
 	}
 	
-	if(isset($_POST['account_submit']))
-	{
+	if(isset($_POST['account_submit'])){
+	
 
 	  $strQuery = "INSERT INTO fan (Username,Password) VALUES (?,?)"; 
 	  /*Prepare Statement for security*/
 	  $result = $dbhandle -> prepare($strQuery);
-	  $username = $_POST["user"];
-	  $password = md5($_POST["pass"]); //Hashed
-	
-	  
-	  
+	  $username = $_POST["username"];
+	  echo $username;
+  
 	  /*Bind search to two parameters for first and last name*/
 	  $result -> bind_param("ss",$username,$password);
 	  $result -> execute();
@@ -154,7 +176,7 @@ nav{
 		<li><a href="#">Games</a></li>
 		<li><a href="#">Schedule</a></li>
 		<li><a href="#">Teams</a></li>
-		<li><a href="#">Logout</a></li>		
+		<li><a href="logout.php">Logout</a></li>		
 	  </ul>
 	</nav>
 
