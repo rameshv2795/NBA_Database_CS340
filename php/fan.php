@@ -14,8 +14,8 @@
 	if ($dbhandle->connect_error) {
 	  exit("There was an error with your connection: ".$dbhandle->connect_error);
 	}
-	if(isset($_POST['account_submit']))
-	{
+	if(isset($_POST['account_submit'])){
+	
 
 	  $strQuery = "INSERT INTO fan (Username,Password) VALUES (?,?)"; 
 	  
@@ -42,6 +42,8 @@
 		$_SESSION["username"] = $username;
 		if(isset($_SESSION["logged_in"])){
 				header('Location: member.php');
+				echo "Welcome '".$username."'! Account Created!";
+				echo '<a href="member.php">Enter Member Area!</a>';
 				die();
 		}
 		else{
@@ -56,26 +58,64 @@
 	  
 	  
 
-	}?>
+	}
+	
+	else if(isset($_POST['account_login'])){
+	  
+	  $strQuery = "SELECT Username FROM fan WHERE Username = ? AND Password = ?"; 
+	  
+	  /*Prepare Statement for security*/
+	  $result = $dbhandle -> prepare($strQuery);
+	  $username = $_POST["user"];
+	  $password = md5($_POST["pass"]); //Hashed
+	
+	  
+	  
+	  /*Bind search to two parameters for first and last name*/
+	  $result -> bind_param("ss",$username,$password);
+	  
+	  /*Check to see if unique username*/
+  	  $result -> execute();
+	  $result = $result -> get_result();
+	  if(mysqli_num_rows($result) == 1){
+
+		$_SESSION["logged_in"] = true;
+		$_SESSION["username"] = $username;
+		if(isset($_SESSION["logged_in"])){
+				header('Location: member.php');
+				echo '<a href="member.php">Enter Member Area!</a>';
+				die();
+		}
+		else{
+			echo "Login Error";
+		}
+		//header("Location: http://web.engr.oregonstate.edu/~rameshv/CS340_Project/NBA_Database_CS340/php/member.php", true,  301);
+		//die(); /*prevents unexpected behaviour after redirect */
+	  }
+	  else{
+		echo "Invalid Login Information";
+	  }
+	  
+	  
+
+	}
+	
+
+	
+	
+	
+	?>
 
 
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
 div.container {
     width: 100%;
     border: 1px solid gray;
 	height:100%;
 	position:fixed;
-}
-
-#btn1{
-	background-color: red;
-	border-style: solid;
-	border-color: blue;
-	margin:0 auto;
 }
 
 header, footer {
@@ -116,21 +156,23 @@ nav{
 </head>
 <body>
 
-<div class="jumbotron">
+<div class="container">
+
 <header>
-   <h1>Login</h1>
+   <h1>Login/Sign-Up</h1>
 </header>
-	<p></p>
-	<p></p>
-	<p class="text-center">
-	<a href="team.php" class="btn btn-info" id="btn1" role="button">Teams</a>
-	<a href="stat.php" class="btn btn-info"  id="btn1" role="button">Player Statistics</a>
-	<a href="game.php" class="btn btn-info" id="btn1" role="button">Games</a>
-	<a href="player.php" class="btn btn-info" id="btn1" role="button">Players</a></p>
+  
+	<nav>
+	  <ul >
+		<li><a href="../home.html">Home</a></li>
+		<li><a href="player.php">Players</a></li>
+		<li><a href="stat.php">Player Statistics</a></li>
+		<li><a href="#">Games</a></li>
+		<li><a href="#">Schedule</a></li>
+		<li><a href="#">Teams</a></li>	
+	  </ul>
+	</nav>
 
-</div>
-
-<div>
 
 <article>
 	<form id="signup_form" method="post" >
@@ -140,6 +182,7 @@ nav{
 
 	<br><br>
 	<input type="submit" name="account_submit" value="Create Account">
+	<input type="submit" name="account_login" value="Login">
 	</form>
 
 
