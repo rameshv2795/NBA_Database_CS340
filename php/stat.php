@@ -2,6 +2,7 @@
 <html>
 <head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
 div.container {
     width: 100%;
@@ -53,9 +54,8 @@ nav{
 		<li><a href="../home.html">Home</a></li>
 		<li><a href="team.php">Teams</a></li>
 		<li><a href="player.php">Players</a></li>
-		<li><a href="#">Games</a></li>
-		<li><a href="#">Schedule</a></li>
-		<li><a href="#">Login/Sign-Up</a></li>	
+		<li><a href="game.php">Games</a></li>
+		<li><a href="fan.php">Login/Sign-Up</a></li>	
 	  </ul>
 	</nav>
 

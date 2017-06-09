@@ -78,11 +78,10 @@ nav{
 	<p></p>
 	<p></p>
 	<p class="text-center">
-	<a href="php/player.php" class="btn btn-info" id="btn1" role="button">Players</a>
-	<a href="php/stat.php" class="btn btn-info"  id="btn1" role="button">Player Statistics</a>
-	<a href="#" class="btn btn-info"  id="btn1" role="button">Games</a>
-	<a href="#" class="btn btn-info" id="btn1" role="button">Schedule</a>
-	<a href="php/fan.php" class="btn btn-info" id="btn1" role="button">Login/Sign-Up</a></p>
+	<a href="player.php" class="btn btn-info" id="btn1" role="button">Players</a>
+	<a href="stat.php" class="btn btn-info"  id="btn1" role="button">Player Statistics</a>
+	<a href="game.php" class="btn btn-info"  id="btn1" role="button">Games</a>
+	<a href="fan.php" class="btn btn-info" id="btn1" role="button">Login/Sign-Up</a></p>
 
 </div>
 <div id = "realdiv">
