@@ -10,6 +10,13 @@ div.container {
 	position:fixed;
 }
 
+table, th, td {
+   border: 1px solid black;
+   text-align:center;
+   font-weight: bold;
+   font-size: 120%;
+}
+
 header, footer {
     padding: 1em;
     color: white;
@@ -68,8 +75,7 @@ nav{
 	<a href="player.php" class="btn btn-info" id="btn1" role="button">Players</a></p>
 
 </div>
-<center>
-<article>
+
 
 <?php
 // Including the wrapper file in the page
@@ -91,7 +97,7 @@ nav{
 	  $result -> execute();
 	  $result = $result -> get_result();
 	  echo "<br><br><br>";
-		echo "<table cellspacing='100'>";
+		echo "<table align='center'>";
 		echo "<tr>";
 			echo "<th>" . "Game" ."</th>";
 			echo "<th>" . "Team 1" ."</th>";
@@ -116,10 +122,6 @@ nav{
 	  
 
 ?>
-
-
-</article>
-</center>
 
 
 </body>

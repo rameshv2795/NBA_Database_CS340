@@ -33,6 +33,14 @@ ul {
 li {
 	display: inline;
 }
+
+table, th, td {
+   border: 1px solid black;
+   text-align:center;
+   font-weight: bold;
+   font-size: 120%;
+}
+
 article {
     margin-left: 170px;
     padding: 1em;
@@ -118,8 +126,12 @@ nav{
 			echo "<th>" . "APG" ."</th>";
 			echo "<th>" . "BPG" ."</th>";
 			echo "<th>" . "FG%" ."</th>";
+			echo "<th>" . "3P%" ."</th>";
 			echo "<th>" . "GP" ."</th>";
+			echo "<th>" . "Turnovers" ."</th>";
+			echo "<th>" . "Rebounds" ."</th>";
 			echo "<th>" . "Year" ."</th>";
+			
 		echo "</tr>";		
 		
 		while($entry = $result -> fetch_assoc()){
@@ -130,9 +142,11 @@ nav{
 					echo "<td>" . $entry["APG"] . "</td>";
 					echo "<td>" . $entry["BPG"] . "</td>";
 					echo "<td>" . $entry["FG%"] . "</td>";
+					echo "<td>" . $entry["3P%"] . "</td>";
 					echo "<td>" . $entry["GP"] . "</td>";
+					echo "<td>" . $entry["TOV"] . "</td>";
+					echo "<td>" . $entry["RPG"] . "</td>";
 					echo "<td>" . $entry["year"] . "</td>";
-			
 			echo "</tr>";
 		}
 		echo "</table>";
