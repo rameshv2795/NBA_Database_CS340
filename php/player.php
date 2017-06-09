@@ -5,6 +5,7 @@ echo session_id();
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
 div.container {
     width: 100%;
@@ -52,27 +53,26 @@ nav{
 </head>
 <body>
 
-<div class="container">
-
+<div class="jumbotron">
 <header>
-   <h1>NBA Players</h1>
+   <h1>Players</h1>
 </header>
-  
-	<nav>
-	  <ul >
-		<li><a href="../home.html">Home</a></li>
-		<li><a href="team.php">Teams</a></li>
-		<li><a href="stat.php">Player Statistics</a></li>
-		<li><a href="#">Games</a></li>
-		<li><a href="#">Schedule</a></li>
-		<li><a href="#">Login/Sign-Up</a></li>	
-	  </ul>
-	</nav>
+	<p></p>
+	<p></p>
+	<p class="text-center">
+	<a href="php/team.php" class="btn btn-info" id="btn1" role="button">Teams</a>
+	<a href="php/stat.php" class="btn btn-info"  id="btn1" role="button">Player Statistics</a>
+	<a href="#" class="btn btn-info"  id="btn1" role="button">Games</a>
+	<a href="#" class="btn btn-info" id="btn1" role="button">Schedule</a>
+	<a href="php/fan.php" class="btn btn-info" id="btn1" role="button">Login/Sign-Up</a></p>
 
-
-<article>
+</div>
+<div>
+<center><article style="background-color:red">
 
 	<form id="search_player_form" method="post" >
+	
+	<img src="images/lebron-james.jpg" style="float:left;height:800px;width:300px">
 	
 	Search Player Name: <input type="text" name="pname" id="pname"><br>
 
@@ -157,7 +157,9 @@ nav{
 
 
 	 ?>
+	 <img src="images/lebron-james.jpg" style="float:right;height:800px;width:300px">
 </article>
+</center>
 
 
 
