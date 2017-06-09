@@ -1,4 +1,6 @@
 	<?php session_start();
+	echo session_id();
+	print $_COOKIE['PHPSESSID'];
 	// Including the wrapper file in the page
 	$hostdb = "classmysql:3306";  // MySQl host
 	$userdb = "cs340_rameshv";  // MySQL username
@@ -32,16 +34,19 @@
 	  $check = $dbhandle -> prepare($checkQuery);
 	  $check -> bind_param("s",$username);
 	  $check -> execute();
-	  $check = $check -> get_result();
-	  
+	  $check = $check -> get_result();	  
 	  if(mysqli_num_rows($check) == 0){
 		$result -> execute();
 		$result = $result -> get_result();
 		$_SESSION["logged_in"] = true;
 		$_SESSION["username"] = $username;
-		//echo "Account Created! Welcome " .$_SESSION["username"];
-		echo "<script> window.location.assign('member.php'); </script>";
-		die();
+		if(isset($_SESSION["logged_in"])){
+				header('Location: member.php');
+				die();
+		}
+		else{
+			echo "Unexpected error has occurred";
+		}
 		//header("Location: http://web.engr.oregonstate.edu/~rameshv/CS340_Project/NBA_Database_CS340/php/member.php", true,  301);
 		//die(); /*prevents unexpected behaviour after redirect */
 	  }
@@ -52,6 +57,7 @@
 	  
 
 	}?>
+
 
 <!DOCTYPE html>
 <html>
