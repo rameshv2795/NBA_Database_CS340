@@ -1,67 +1,29 @@
 	<?php session_start();
-	//echo session_id();
-	//print $_COOKIE['PHPSESSID'];
-	// Including the wrapper file in the page
+	?>
+	<?php
+	function add_players(){
+
 	$hostdb = "classmysql:3306";  // MySQl host
-	$userdb = "cs340_rameshv";  // MySQL username
-	$passdb = "6238";  // MySQL password
-	$namedb = "cs340_rameshv";  // MySQL database name
+	$userdb = "cs340_rameshv";    // MySQL username
+	$passdb = "6238";             // MySQL password
+	$namedb = "cs340_rameshv";    // MySQL database name
 
 	// Establish a connection to the database
 	$dbhandle = new mysqli($hostdb, $userdb, $passdb, $namedb);
 
-	/*Render an error message, to avoid abrupt failure, if the database connection parameters are incorrect */
-	if ($dbhandle->connect_error) {
-	  exit("There was an error with your connection: ".$dbhandle->connect_error);
-	}
-	
-	if(isset($_SESSION["logged_in"])){
-		echo '<script language="javascript">';
-		echo 'alert("LOGGED IN")';
-		echo '</script>';
-		$username = $_SESSION["username"];
-		 echo $username;
-		
-		if(isset($_POST['player_submit'])){
-		
-		  $strQuery = "UPDATE fan SET FavoritePlayer = ? WHERE 
-					   Username = 'kon'"; 
-		echo '<script language="javascript">';
-		echo 'alert("DROPDOWN")';
-		echo '</script>';
-		  /*Prepare Statement for security*/
-		  $result = $dbhandle -> prepare($strQuery);
-		  $pid = $_POST["pla"];
-		  echo $_POST["pla"];
-		  /*Bind parameter*/
-		  $result -> bind_param("s",$pid);
-		  $result -> execute();
-	      $result = $result -> get_result();			
-		  
-		  
+	$sql = "SELECT FirstName, LastName FROM player ORDER BY LastName";
+	$set_players = $dbhandle -> query($sql);
+	$player_array = array();
 
-		
+	$output .= "<option value = 'All Players'> Favorite Player </option>";
+		//echo "<select name='team' id='selected_team'>";
+		while($row = $set_players -> fetch_assoc()){
+			$output .= ' <option value="'.$row["playerid"].'">'.$row["LastName"].', '.$row["FirstName"].'</option>';
 		}
-										
+		//echo "</select>";
+		return $output;
 	}
-	
-	if(isset($_POST['account_submit'])){
-	
-
-	  $strQuery = "INSERT INTO fan (Username,Password) VALUES (?,?)"; 
-	  /*Prepare Statement for security*/
-	  $result = $dbhandle -> prepare($strQuery);
-	  $username = $_POST["username"];
-	  echo $username;
-  
-	  /*Bind search to two parameters for first and last name*/
-	  $result -> bind_param("ss",$username,$password);
-	  $result -> execute();
-	  $result = $result -> get_result();
-	}
-
-	 ?>
-
+	?>		
 	<?php
 	function add_teams(){
 
@@ -91,30 +53,89 @@
 	}
 	?>	 
 	
-	<?php
-	function add_players(){
-
+	<?php session_start();
+	//echo session_id();
+	//print $_COOKIE['PHPSESSID'];
+	// Including the wrapper file in the page
 	$hostdb = "classmysql:3306";  // MySQl host
-	$userdb = "cs340_rameshv";    // MySQL username
-	$passdb = "6238";             // MySQL password
-	$namedb = "cs340_rameshv";    // MySQL database name
+	$userdb = "cs340_rameshv";  // MySQL username
+	$passdb = "6238";  // MySQL password
+	$namedb = "cs340_rameshv";  // MySQL database name
 
 	// Establish a connection to the database
 	$dbhandle = new mysqli($hostdb, $userdb, $passdb, $namedb);
 
-	$sql = "SELECT FirstName, LastName FROM player ORDER BY LastName";
-	$set_players = $dbhandle -> query($sql);
-	$player_array = array();
-
-	$output .= "<option value = 'All Players'> Favorite Player </option>";
-		//echo "<select name='team' id='selected_team'>";
-		while($row = $set_players -> fetch_assoc()){
-			$output .= ' <option value="'.$row["playerid"].'">'.$row["LastName"].', '.$row["FirstName"].'</option>';
-		}
-		//echo "</select>";
-		return $output;
+	/*Render an error message, to avoid abrupt failure, if the database connection parameters are incorrect */
+	if ($dbhandle->connect_error) {
+	  exit("There was an error with your connection: ".$dbhandle->connect_error);
 	}
-	?>	
+	
+	if(isset($_SESSION["logged_in"])){
+		echo '<script language="javascript">';
+		echo 'alert("LOGGED IN")';
+		echo '</script>';
+		$username = $_SESSION["username"];
+		echo $username;
+		
+		if(isset($_POST['player_submit'])){
+		
+		  $strQuery = "UPDATE fan SET FavoritePlayer = ? WHERE 
+					   Username = '".$username."'"; 
+		
+		  echo "DROPDOWN";
+		  /*Prepare Statement for security*/
+		  $result = $dbhandle -> prepare($strQuery);
+		  $pid = $_POST["pla"];
+		  echo $_POST["pla"];
+		  /*Bind parameter*/
+		  $result -> bind_param("s",$pid);
+		  $result -> execute();
+	      $result = $result -> get_result();			
+		
+		}
+		
+		else if(isset($_POST['team_submit'])){
+		
+		  $strQuery = "UPDATE fan SET FavoriteTeam = ? WHERE 
+					   Username = '".$username."'"; 
+		
+		  echo "DROPDOWN";
+		  /*Prepare Statement for security*/
+		  $result = $dbhandle -> prepare($strQuery);
+		  $pid = $_POST["nbateamid"];
+		  echo $_POST["nbateamid"];
+		  /*Bind parameter*/
+		  $result -> bind_param("s",$pid);
+		  $result -> execute();
+	      $result = $result -> get_result();			
+		
+		}		
+		
+		else if(isset($_POST['about_submit'])){
+		
+		  $strQuery = "UPDATE fan SET AboutMe = ? WHERE 
+					   Username = '".$username."'"; 
+		
+
+		  /*Prepare Statement for security*/
+		  $result = $dbhandle -> prepare($strQuery);
+		  $pid = $_POST["text"];
+		  echo $_POST["text"];
+		  /*Bind parameter*/
+		  $result -> bind_param("s",$pid);
+		  $result -> execute();
+	      $result = $result -> get_result();			
+		
+		}		
+										
+	}
+	
+
+	 ?>
+
+
+	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -188,31 +209,35 @@ nav{
 
 
 <article>
-	<form id="signup_form" method="post" >
+	<form id="player_form" method="post" >
 	<select id="pla" name="pla">
 	<?php echo add_players();?>
+	<option> 10 </option>
 	</select>
 	<br><br>
 	<input type="submit" name="player_submit" value="Add Favorite Player">
 	</form>
-	<br><br><br><br>
-	<form id="signup_form" method="post" >
+	<br>
+	<form id="team_form" method="post" >
 	<select id="nbateamid" name="nbateamid">
 	<?php echo add_teams();?>
 	</select>
 	<br><br>
 	<input type="submit" name="team_submit" value="Add Favorite Team">
 	</form>
-	<br><br><br><br>
+	<br>
 	<form id="aboutme_form" method="post" >
-	<textarea rows="5" cols="60">
+	<textarea name="text" id="textarea" rows="5" cols="60">
 	
 	</textarea>
 	<br><br>
 	<input type="submit" name="about_submit" value="Add About">
 	</form>	
+	<br>
+	<a href="team_fav.php" class="btn btn-info" id="btn1" role="button">View Team Fan Stats</a></p>
+	<br><br><br>
+	<a href="fan.php" class="btn btn-info" id="btn1" role="button">Logout</a></p>
 	
-
 
 </article>
 
