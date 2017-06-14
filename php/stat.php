@@ -119,6 +119,7 @@ nav{
 	  $result -> bind_param("s",$_POST["player"]);
 	  $result -> execute();
 	  $result = $result -> get_result();
+	  //preparing table for the stats
 	  echo "<br><br><br>";
 		echo "<table>";
 		echo "<tr>";
@@ -133,7 +134,7 @@ nav{
 			echo "<th>" . "Year" ."</th>";
 			
 		echo "</tr>";		
-		
+		//populating table with player stats. 
 		while($entry = $result -> fetch_assoc()){
 		
 			echo "<tr>";
@@ -174,7 +175,7 @@ nav{
 		echo "</tr>";		
 		
 		while($entry = $result -> fetch_assoc()){
-		
+		//populating the table with the results from the database
 			echo "<tr>";
 				
 					echo "<td>" . $entry["PPG"] . "</td>";
@@ -197,6 +198,7 @@ nav{
 </html>
 
 <script>
+//player dropdown / ajax for webpage
 $(document).ready(function()
 {
 	$('#nbateamid').ready(function(){
@@ -217,6 +219,7 @@ $(document).ready(function()
 		});
 		
 	});
+	//updating the other dropdown when the team is selected
 	$('#nbateamid').change(function(){
 		var team_id = $(this).val();
 		$.ajax({
@@ -239,6 +242,8 @@ $(document).ready(function()
 </script>
 
 <?php
+//for the dropdown menu
+//populate
 function add_teams(){
 
 $hostdb = "classmysql:3306";  // MySQl host

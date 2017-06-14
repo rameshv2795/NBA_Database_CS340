@@ -135,6 +135,7 @@ nav{
 		$result = $dbhandle -> query($strQuery);
 	
 	}
+	//creating the table
 	  echo "<br><br><br>";
 		echo "<table>";
 		echo "<tr>";
@@ -145,7 +146,7 @@ nav{
 			echo "<th>" . "Weight" ."</th>";
 			echo "<th>" . "College" ."</th>";
 		echo "</tr>";		
-		
+		//adding info to the table
 		while($entry = $result -> fetch_assoc()){
 		
 			echo "<tr>";

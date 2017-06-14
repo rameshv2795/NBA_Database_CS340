@@ -149,6 +149,7 @@ nav{
 	if ($dbhandle->connect_error) {
 	  exit("There was an error with your connection: ".$dbhandle->connect_error);
 	}	
+	  //select western conference teams
 	  $strQuery = "SELECT * FROM team WHERE Conference='Western' ORDER BY TeamName";
 	  /*Prepare Statement for security*/
 	  $result = $dbhandle -> prepare($strQuery);
@@ -159,7 +160,7 @@ nav{
 		echo "<tr>";
 			echo "<th>" . "Team Name" ."</th>";
 		echo "</tr>";		
-		
+		/*Populating the table with results from the database*/
 		while($entry = $result -> fetch_assoc()){
 		
 			echo "<tr>";

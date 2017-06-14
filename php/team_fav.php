@@ -88,6 +88,7 @@ nav{
 	  $result = $dbhandle -> prepare($strQuery);
 	  $result -> execute();
 	  $result = $result -> get_result();
+	  /* Printing the table of reults from the databse */
 	  echo "<br><br><br>";
 		echo "<table cellspacing='100'>";
 		echo "<tr>";
@@ -95,7 +96,7 @@ nav{
 			echo "<th>" . "Fans" ."</th>";
 
 		echo "</tr>";		
-		
+		/*Printing filling table with favorite team results*/
 		while($entry = $result -> fetch_assoc()){
 		
 			echo "<tr>";
